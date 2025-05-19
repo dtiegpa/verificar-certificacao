@@ -55,7 +55,7 @@
         const certificacoes = new Set();
 
         for (const linha of linhas) {
-          const [nome, certificacao] = linha.split(',');
+          const [nome, certificacao] = linha.split(',').map(item => item.trim().toUpperCase());
 
           if (nome && certificacao && nome.trim().toUpperCase() === nomeDigitado) {
             certificacoes.add(certificacao.trim());
@@ -65,8 +65,7 @@
         if (certificacoes.size > 0) {
           resultado.innerHTML = `
             <div class="alert alert-success" role="alert">
-              <strong>CERTIFICADO VÁLIDO!</strong><br><strong>Nome:</strong> ${nomeDigitado}<br>
-              <strong>CERTIFICADO VÁLIDO!</strong><br><strong>Certificações:</strong><br>
+              <strong>CERTIFICADO VÁLIDO!</strong><br><strong>Nome:</strong> ${nomeDigitado}<br><strong>Certificações:</strong><br>
               <ul>${[...certificacoes].map(cert => `<li>${cert}</li>`).join('')}</ul>
             </div>`;
         } else {
