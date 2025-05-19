@@ -48,17 +48,21 @@
       }
 
       try {
-        const response = await fetch('dados.csv'); // Arquivo no mesmo diretório
+        const response = await fetch('dados.csv');
         const csv = await response.text();
 
         const linhas = csv.split('\n').slice(1); // Ignora cabeçalho
         const certificacoes = new Set();
 
         for (const linha of linhas) {
-          const [nome, certificacao] = linha.split(',').map(item => item.trim().toUpperCase());
+          const colunas = linha.split(',');
+          if (colunas.length < 2) continue;
 
-          if (nome && certificacao && nome.trim().toUpperCase() === nomeDigitado) {
-            certificacoes.add(certificacao.trim());
+          const nome = colunas[0].trim().toUpperCase();
+          const certificacao = colunas[1].trim();
+
+          if (nome === nomeDigitado && certificacao) {
+            certificacoes.add(certificacao);
           }
         }
 
