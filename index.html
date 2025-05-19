@@ -65,7 +65,7 @@
         if (certificacoes.size > 0) {
           resultado.innerHTML = `
             <div class="alert alert-success" role="alert">
-              <strong>Nome:</strong> ${nomeDigitado}<br>
+              <strong>CERTIFICADO VÁLIDO!</strong><br><strong>Nome:</strong> ${nomeDigitado}<br>
               <strong>CERTIFICADO VÁLIDO!</strong><br><strong>Certificações:</strong><br>
               <ul>${[...certificacoes].map(cert => `<li>${cert}</li>`).join('')}</ul>
             </div>`;
